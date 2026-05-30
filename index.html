@@ -351,6 +351,127 @@
       .hero-actions { flex-direction: column; align-items: flex-start; gap: 20px; }
       .services-grid { grid-template-columns: 1fr; }
     }
+
+    /* ── VIDEO ── */
+    .video-section {
+      padding: 120px 64px;
+      background: var(--gray);
+    }
+
+    .video-section .section-header {
+      margin-bottom: 48px;
+    }
+
+    .video-wrapper {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+    }
+
+    .video-wrapper iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    /* ── ABOUT ── */
+    .about { padding: 120px 64px; }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px;
+      margin-top: 64px;
+    }
+
+    .about-card {
+      padding: 48px 36px;
+      background: var(--gray);
+    }
+
+    .about-num {
+      font-family: var(--font-display);
+      font-size: 48px;
+      font-weight: 300;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 20px;
+    }
+
+    .about-title {
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 400;
+      margin-bottom: 12px;
+    }
+
+    .about-desc {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--mid);
+      line-height: 1.7;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--black);
+      color: var(--white);
+      padding: 48px 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-logo {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: var(--white);
+      text-decoration: none;
+    }
+
+    .footer-logo span { color: var(--accent); }
+
+    .footer-nav {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+    }
+
+    .footer-nav a {
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--white);
+      text-decoration: none;
+      opacity: 0.5;
+      transition: opacity 0.2s;
+    }
+
+    .footer-nav a:hover { opacity: 1; }
+
+    .footer-copy {
+      font-size: 12px;
+      color: var(--white);
+      opacity: 0.3;
+    }
+
+    @media (max-width: 900px) {
+      .video-section { padding: 80px 24px; }
+      .about { padding: 80px 24px; }
+      .about-grid { grid-template-columns: repeat(2, 1fr); }
+      footer { padding: 40px 24px; flex-direction: column; gap: 28px; text-align: center; }
+      .footer-nav { flex-wrap: wrap; justify-content: center; gap: 20px; }
+    }
+
+    @media (max-width: 480px) {
+      .about-grid { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
@@ -438,6 +559,24 @@
     </div>
   </div>
 
+  <!-- VIDEO -->
+  <section class="video-section">
+    <div class="section-header">
+      <div>
+        <p class="section-tag">Как мы работаем</p>
+        <h2 class="section-title">Результаты говорят<br>сами за себя</h2>
+      </div>
+    </div>
+    <div class="video-wrapper">
+      <iframe
+        src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+        title="Peak Digital — о нас"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen>
+      </iframe>
+    </div>
+  </section>
+
   <!-- SERVICES -->
   <section class="services" id="services">
     <div class="section-header">
@@ -488,6 +627,55 @@
 
     </div>
   </section>
+
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <div class="section-header">
+      <div>
+        <p class="section-tag">Почему мы</p>
+        <h2 class="section-title">Почему Peak Digital</h2>
+      </div>
+    </div>
+    <div class="about-grid">
+
+      <div class="about-card">
+        <div class="about-num">01</div>
+        <h3 class="about-title">Прозрачность</h3>
+        <p class="about-desc">Еженедельные отчёты, доступ к рекламным кабинетам всегда открыт. Вы видите всё.</p>
+      </div>
+
+      <div class="about-card">
+        <div class="about-num">02</div>
+        <h3 class="about-title">Результат в цифрах</h3>
+        <p class="about-desc">KPI фиксируем в договоре, работаем на измеримый результат — заявки, продажи, ROI.</p>
+      </div>
+
+      <div class="about-card">
+        <div class="about-num">03</div>
+        <h3 class="about-title">Команда экспертов</h3>
+        <p class="about-desc">Специалисты с опытом 5+ лет в каждом направлении. Без джунов на ключевых задачах.</p>
+      </div>
+
+      <div class="about-card">
+        <div class="about-num">04</div>
+        <h3 class="about-title">Без долгих согласований</h3>
+        <p class="about-desc">Выделенный менеджер отвечает в течение часа. Решения принимаем быстро.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <a class="footer-logo" href="#">Peak <span>Digital</span></a>
+    <ul class="footer-nav">
+      <li><a href="#services">Услуги</a></li>
+      <li><a href="#about">О нас</a></li>
+      <li><a href="contact.html">Контакты</a></li>
+    </ul>
+    <p class="footer-copy">© 2024 Peak Digital. Все права защищены.</p>
+  </footer>
 
 </body>
 </html>

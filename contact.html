@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Контакты — Peak Digital</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --white:   #ffffff;
+      --black:   #0a0a0a;
+      --gray:    #f5f5f3;
+      --mid:     #9a9a94;
+      --accent:  #c8a96e;
+      --font-display: 'Cormorant Garamond', serif;
+      --font-body:    'DM Sans', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--white);
+      color: var(--black);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 28px 64px;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+    }
+
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: var(--black);
+      text-decoration: none;
+    }
+
+    .nav-logo span { color: var(--accent); }
+
+    .nav-links {
+      display: flex;
+      gap: 40px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--black);
+      text-decoration: none;
+      opacity: 0.6;
+      transition: opacity 0.2s;
+    }
+
+    .nav-links a:hover { opacity: 1; }
+
+    .nav-cta {
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--white);
+      background: var(--black);
+      padding: 12px 28px;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+
+    .nav-cta:hover { background: var(--accent); }
+
+    /* ── CONTACT PAGE ── */
+    .contact-page {
+      min-height: 100vh;
+      padding: 160px 64px 120px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+    }
+
+    .contact-inner {
+      width: 100%;
+      max-width: 720px;
+    }
+
+    .contact-tag {
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 24px;
+    }
+
+    .contact-title {
+      font-family: var(--font-display);
+      font-size: clamp(40px, 5vw, 72px);
+      font-weight: 300;
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+
+    .contact-subtitle {
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--mid);
+      margin-bottom: 64px;
+    }
+
+    /* ── FORM ── */
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .form-group label {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--mid);
+    }
+
+    .form-group input,
+    .form-group textarea {
+      font-family: var(--font-body);
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--black);
+      background: var(--gray);
+      border: none;
+      border-bottom: 1px solid rgba(0,0,0,0.15);
+      padding: 16px 20px;
+      outline: none;
+      transition: border-color 0.2s, background 0.2s;
+      width: 100%;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      background: var(--white);
+      border-bottom-color: var(--accent);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 140px;
+    }
+
+    .form-submit {
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--white);
+      background: var(--black);
+      border: none;
+      padding: 18px 48px;
+      cursor: pointer;
+      transition: background 0.2s;
+      align-self: flex-start;
+    }
+
+    .form-submit:hover { background: var(--accent); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--black);
+      color: var(--white);
+      padding: 48px 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-logo {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: var(--white);
+      text-decoration: none;
+    }
+
+    .footer-logo span { color: var(--accent); }
+
+    .footer-nav {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+    }
+
+    .footer-nav a {
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--white);
+      text-decoration: none;
+      opacity: 0.5;
+      transition: opacity 0.2s;
+    }
+
+    .footer-nav a:hover { opacity: 1; }
+
+    .footer-copy {
+      font-size: 12px;
+      color: var(--white);
+      opacity: 0.3;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 20px 24px; }
+      .nav-links { display: none; }
+      .contact-page { padding: 120px 24px 80px; }
+      footer { padding: 40px 24px; flex-direction: column; gap: 28px; text-align: center; }
+      .footer-nav { flex-wrap: wrap; justify-content: center; gap: 20px; }
+    }
+
+    @media (max-width: 480px) {
+      .nav-cta { display: none; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a class="nav-logo" href="index.html">Peak <span>Digital</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html#services">Услуги</a></li>
+      <li><a href="index.html#about">О нас</a></li>
+      <li><a href="contact.html">Контакты</a></li>
+    </ul>
+    <a class="nav-cta" href="contact.html">Обсудить проект</a>
+  </nav>
+
+  <!-- CONTACT FORM -->
+  <main class="contact-page">
+    <div class="contact-inner">
+      <p class="contact-tag">Свяжитесь с нами</p>
+      <h1 class="contact-title">Обсудим<br>ваш проект</h1>
+      <p class="contact-subtitle">Оставьте заявку — ответим в течение часа и предложим решение под вашу задачу.</p>
+
+      <form class="contact-form" action="#" method="post">
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="name">Имя</label>
+            <input type="text" id="name" name="name" placeholder="Иван Иванов" required />
+          </div>
+          <div class="form-group">
+            <label for="phone">Телефон</label>
+            <input type="tel" id="phone" name="phone" placeholder="+7 999 000 00 00" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="ivan@company.ru" required />
+        </div>
+
+        <div class="form-group">
+          <label for="message">Опишите задачу</label>
+          <textarea id="message" name="message" placeholder="Расскажите о вашем бизнесе и задаче, которую нужно решить..."></textarea>
+        </div>
+
+        <button type="submit" class="form-submit">Отправить заявку</button>
+
+      </form>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <a class="footer-logo" href="index.html">Peak <span>Digital</span></a>
+    <ul class="footer-nav">
+      <li><a href="index.html#services">Услуги</a></li>
+      <li><a href="index.html#about">О нас</a></li>
+      <li><a href="contact.html">Контакты</a></li>
+    </ul>
+    <p class="footer-copy">© 2024 Peak Digital. Все права защищены.</p>
+  </footer>
+
+</body>
+</html>
