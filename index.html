@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Peak Digital — Маркетинговое агентство</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Reset & Base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --white:   #ffffff;
+      --black:   #0a0a0a;
+      --gray:    #f5f5f3;
+      --mid:     #9a9a94;
+      --accent:  #c8a96e;
+      --font-display: 'Cormorant Garamond', serif;
+      --font-body:    'DM Sans', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--white);
+      color: var(--black);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 28px 64px;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+    }
+
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: var(--black);
+      text-decoration: none;
+    }
+
+    .nav-logo span { color: var(--accent); }
+
+    .nav-links {
+      display: flex;
+      gap: 40px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--black);
+      text-decoration: none;
+      opacity: 0.6;
+      transition: opacity 0.2s;
+    }
+
+    .nav-links a:hover { opacity: 1; }
+
+    .nav-cta {
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--white);
+      background: var(--black);
+      padding: 12px 28px;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+
+    .nav-cta:hover { background: var(--accent); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding-top: 100px;
+    }
+
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 80px 64px;
+    }
+
+    .hero-tag {
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 32px;
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(52px, 6vw, 86px);
+      font-weight: 300;
+      line-height: 1.08;
+      margin-bottom: 32px;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero-desc {
+      font-size: 16px;
+      font-weight: 300;
+      color: var(--mid);
+      line-height: 1.75;
+      max-width: 420px;
+      margin-bottom: 48px;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .btn-primary {
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--white);
+      background: var(--black);
+      padding: 16px 36px;
+      text-decoration: none;
+      display: inline-block;
+      transition: background 0.2s;
+    }
+
+    .btn-primary:hover { background: var(--accent); }
+
+    .btn-ghost {
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--black);
+      text-decoration: none;
+      opacity: 0.5;
+      border-bottom: 1px solid currentColor;
+      padding-bottom: 2px;
+      transition: opacity 0.2s;
+    }
+
+    .btn-ghost:hover { opacity: 1; }
+
+    .hero-right {
+      background: var(--gray);
+      display: flex;
+      align-items: flex-end;
+      padding: 64px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-right::before {
+      content: "01";
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: var(--font-display);
+      font-size: 320px;
+      font-weight: 300;
+      color: rgba(0,0,0,0.04);
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .hero-stat-block {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-stat-num {
+      font-family: var(--font-display);
+      font-size: 48px;
+      font-weight: 300;
+      line-height: 1;
+    }
+
+    .hero-stat-num span { color: var(--accent); }
+
+    .hero-stat-label {
+      font-size: 12px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--mid);
+    }
+
+    /* ── TICKER ── */
+    .ticker {
+      background: var(--black);
+      color: var(--white);
+      padding: 18px 0;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .ticker-track {
+      display: inline-flex;
+      animation: ticker 30s linear infinite;
+    }
+
+    .ticker-item {
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 0 48px;
+      opacity: 0.7;
+    }
+
+    .ticker-dot { color: var(--accent); opacity: 1; }
+
+    @keyframes ticker {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* ── SERVICES ── */
+    .services { padding: 120px 64px; }
+
+    .section-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 64px;
+      border-bottom: 1px solid rgba(0,0,0,0.1);
+      padding-bottom: 32px;
+    }
+
+    .section-tag {
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(36px, 4vw, 56px);
+      font-weight: 300;
+      line-height: 1.1;
+    }
+
+    .section-link {
+      font-size: 13px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--black);
+      text-decoration: none;
+      opacity: 0.5;
+      border-bottom: 1px solid currentColor;
+      padding-bottom: 2px;
+      transition: opacity 0.2s;
+      white-space: nowrap;
+    }
+
+    .section-link:hover { opacity: 1; }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+    }
+
+    .service-card {
+      background: var(--gray);
+      padding: 48px 40px;
+      transition: background 0.2s;
+    }
+
+    .service-card:hover { background: var(--black); }
+
+    .service-num {
+      font-family: var(--font-display);
+      font-size: 13px;
+      color: var(--mid);
+      margin-bottom: 40px;
+      display: block;
+      transition: color 0.2s;
+    }
+
+    .service-card:hover .service-num { color: rgba(255,255,255,0.4); }
+
+    .service-name {
+      font-family: var(--font-display);
+      font-size: 28px;
+      font-weight: 400;
+      line-height: 1.2;
+      margin-bottom: 16px;
+      transition: color 0.2s;
+    }
+
+    .service-card:hover .service-name { color: var(--white); }
+
+    .service-desc {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--mid);
+      line-height: 1.7;
+      transition: color 0.2s;
+    }
+
+    .service-card:hover .service-desc { color: rgba(255,255,255,0.5); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 20px 24px; }
+      .nav-links { display: none; }
+
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-left { padding: 60px 24px 48px; }
+      .hero-right { padding: 48px 24px; min-height: 280px; }
+      .hero-right::before { font-size: 160px; }
+      .hero-stat-block { flex-direction: row; flex-wrap: wrap; gap: 24px; }
+
+      .services { padding: 80px 24px; }
+      .services-grid { grid-template-columns: 1fr 1fr; }
+      .section-header { flex-direction: column; align-items: flex-start; gap: 24px; }
+    }
+
+    @media (max-width: 480px) {
+      .nav-cta { display: none; }
+      .hero-actions { flex-direction: column; align-items: flex-start; gap: 20px; }
+      .services-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a class="nav-logo" href="#">Peak <span>Digital</span></a>
+    <ul class="nav-links">
+      <li><a href="#services">Услуги</a></li>
+      <li><a href="#cases">Кейсы</a></li>
+      <li><a href="#about">О нас</a></li>
+      <li><a href="#contact">Контакты</a></li>
+    </ul>
+    <a class="nav-cta" href="#contact">Обсудить проект</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-left">
+      <p class="hero-tag">Маркетинговое агентство · Москва</p>
+      <h1 class="hero-title">
+        Растём<br>
+        вместе<br>
+        с вашим<br>
+        <em>бизнесом</em>
+      </h1>
+      <p class="hero-desc">
+        Разрабатываем стратегии и запускаем рекламу, которая приводит клиентов. Без воды — только результат.
+      </p>
+      <div class="hero-actions">
+        <a class="btn-primary" href="#contact">Получить стратегию</a>
+        <a class="btn-ghost" href="#cases">Наши кейсы</a>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <div class="hero-stat-block">
+        <div class="hero-stat">
+          <div class="hero-stat-num">120<span>+</span></div>
+          <div class="hero-stat-label">Проектов запущено</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">4<span>х</span></div>
+          <div class="hero-stat-label">Средний рост трафика</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">8<span> лет</span></div>
+          <div class="hero-stat-label">На рынке</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TICKER -->
+  <div class="ticker">
+    <div class="ticker-track">
+      <span class="ticker-item">SEO-продвижение</span>
+      <span class="ticker-item ticker-dot">✦</span>
+      <span class="ticker-item">Контекстная реклама</span>
+      <span class="ticker-item ticker-dot">✦</span>
+      <span class="ticker-item">SMM</span>
+      <span class="ticker-item ticker-dot">✦</span>
+      <span class="ticker-item">Performance-маркетинг</span>
+      <span class="ticker-item ticker-dot">✦</span>
+      <span class="ticker-item">Аналитика</span>
+      <span class="ticker-item ticker-dot">✦</span>
+      <span class="ticker-item">Таргетированная реклама</span>
+      <span class="ticker-item ticker-dot">✦</span>
+      <span class="ticker-item">Брендинг</span>
+      <span class="ticker-item ticker-dot">✦</span>
+      <span class="ticker-item">SEO-продвижение</span>
+      <span class="ticker-item ticker-dot">✦</span>
+      <span class="ticker-item">Контекстная реклама</span>
+      <span class="ticker-item ticker-dot">✦</span>
+      <span class="ticker-item">SMM</span>
+      <span class="ticker-item ticker-dot">✦</span>
+      <span class="ticker-item">Performance-маркетинг</span>
+      <span class="ticker-item ticker-dot">✦</span>
+      <span class="ticker-item">Аналитика</span>
+      <span class="ticker-item ticker-dot">✦</span>
+      <span class="ticker-item">Таргетированная реклама</span>
+      <span class="ticker-item ticker-dot">✦</span>
+      <span class="ticker-item">Брендинг</span>
+      <span class="ticker-item ticker-dot">✦</span>
+    </div>
+  </div>
+
+  <!-- SERVICES -->
+  <section class="services" id="services">
+    <div class="section-header">
+      <div>
+        <p class="section-tag">Что мы делаем</p>
+        <h2 class="section-title">Наши услуги</h2>
+      </div>
+      <a class="section-link" href="#contact">Обсудить задачу</a>
+    </div>
+
+    <div class="services-grid">
+
+      <div class="service-card">
+        <span class="service-num">01</span>
+        <h3 class="service-name">SEO-продвижение</h3>
+        <p class="service-desc">Выводим сайт в топ поисковых систем. Работаем с технической оптимизацией, контентом и ссылочной массой.</p>
+      </div>
+
+      <div class="service-card">
+        <span class="service-num">02</span>
+        <h3 class="service-name">Контекстная реклама</h3>
+        <p class="service-desc">Настраиваем Яндекс Директ так, чтобы каждый рубль бюджета приводил целевого клиента.</p>
+      </div>
+
+      <div class="service-card">
+        <span class="service-num">03</span>
+        <h3 class="service-name">SMM</h3>
+        <p class="service-desc">Ведём социальные сети: контент, комьюнити, таргетированная реклама и работа с аудиторией.</p>
+      </div>
+
+      <div class="service-card">
+        <span class="service-num">04</span>
+        <h3 class="service-name">Performance-маркетинг</h3>
+        <p class="service-desc">Комплексный подход к платному трафику. Работаем на измеримый результат: заявки, продажи, ROI.</p>
+      </div>
+
+      <div class="service-card">
+        <span class="service-num">05</span>
+        <h3 class="service-name">Аналитика</h3>
+        <p class="service-desc">Настраиваем сквозную аналитику и строим отчёты, которые показывают реальную картину бизнеса.</p>
+      </div>
+
+      <div class="service-card">
+        <span class="service-num">06</span>
+        <h3 class="service-name">Стратегия</h3>
+        <p class="service-desc">Разрабатываем маркетинговую стратегию под задачи бизнеса — от аудита до дорожной карты роста.</p>
+      </div>
+
+    </div>
+  </section>
+
+</body>
+</html>
