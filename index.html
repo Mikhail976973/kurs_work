@@ -87,6 +87,18 @@
 
     .nav-cta:hover { background: var(--accent); }
 
+    /* ── SCROLL ANIMATION ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
     /* ── HERO ── */
     .hero {
       min-height: 100vh;
@@ -153,48 +165,33 @@
 
     .btn-primary:hover { background: var(--accent); }
 
-    .btn-ghost {
-      font-size: 13px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--black);
-      text-decoration: none;
-      opacity: 0.5;
-      border-bottom: 1px solid currentColor;
-      padding-bottom: 2px;
-      transition: opacity 0.2s;
-    }
-
-    .btn-ghost:hover { opacity: 1; }
-
     .hero-right {
-      background: var(--gray);
-      display: flex;
-      align-items: flex-end;
-      padding: 64px;
       position: relative;
       overflow: hidden;
     }
 
-    .hero-right::before {
-      content: "01";
+    .hero-right img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .hero-right::after {
+      content: "";
       position: absolute;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      font-family: var(--font-display);
-      font-size: 320px;
-      font-weight: 300;
-      color: rgba(0,0,0,0.04);
-      line-height: 1;
-      pointer-events: none;
+      inset: 0;
+      background: rgba(0,0,0,0.25);
     }
 
     .hero-stat-block {
+      position: absolute;
+      bottom: 64px;
+      left: 64px;
+      z-index: 1;
       display: flex;
       flex-direction: column;
-      gap: 40px;
-      position: relative;
-      z-index: 1;
+      gap: 32px;
     }
 
     .hero-stat-num {
@@ -202,6 +199,7 @@
       font-size: 48px;
       font-weight: 300;
       line-height: 1;
+      color: var(--white);
     }
 
     .hero-stat-num span { color: var(--accent); }
@@ -210,7 +208,7 @@
       font-size: 12px;
       letter-spacing: 0.15em;
       text-transform: uppercase;
-      color: var(--mid);
+      color: rgba(255,255,255,0.6);
     }
 
     /* ── TICKER ── */
@@ -330,36 +328,10 @@
 
     .service-card:hover .service-desc { color: rgba(255,255,255,0.5); }
 
-    /* ── RESPONSIVE ── */
-    @media (max-width: 900px) {
-      nav { padding: 20px 24px; }
-      .nav-links { display: none; }
-
-      .hero { grid-template-columns: 1fr; min-height: auto; }
-      .hero-left { padding: 60px 24px 48px; }
-      .hero-right { padding: 48px 24px; min-height: 280px; }
-      .hero-right::before { font-size: 160px; }
-      .hero-stat-block { flex-direction: row; flex-wrap: wrap; gap: 24px; }
-
-      .services { padding: 80px 24px; }
-      .services-grid { grid-template-columns: 1fr 1fr; }
-      .section-header { flex-direction: column; align-items: flex-start; gap: 24px; }
-    }
-
-    @media (max-width: 480px) {
-      .nav-cta { display: none; }
-      .hero-actions { flex-direction: column; align-items: flex-start; gap: 20px; }
-      .services-grid { grid-template-columns: 1fr; }
-    }
-
     /* ── VIDEO ── */
     .video-section {
       padding: 120px 64px;
       background: var(--gray);
-    }
-
-    .video-section .section-header {
-      margin-bottom: 48px;
     }
 
     .video-wrapper {
@@ -368,6 +340,7 @@
       padding-bottom: 56.25%;
       height: 0;
       overflow: hidden;
+      margin-top: 48px;
     }
 
     .video-wrapper iframe {
@@ -416,14 +389,184 @@
       line-height: 1.7;
     }
 
+    /* ── TEAM PHOTO ── */
+    .team-section {
+      padding: 0 64px 120px;
+    }
+
+    .team-photo {
+      width: 100%;
+      height: 480px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .team-caption {
+      margin-top: 24px;
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--mid);
+      letter-spacing: 0.05em;
+    }
+
+    /* ── CONTACT ── */
+    .contact-section {
+      padding: 120px 64px;
+      background: var(--black);
+      color: var(--white);
+    }
+
+    .contact-section .section-tag { color: var(--accent); }
+
+    .contact-section .section-title { color: var(--white); }
+
+    .contact-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      margin-top: 64px;
+      align-items: start;
+    }
+
+    .contact-info-title {
+      font-family: var(--font-display);
+      font-size: clamp(32px, 3vw, 48px);
+      font-weight: 300;
+      line-height: 1.2;
+      margin-bottom: 24px;
+    }
+
+    .contact-info-desc {
+      font-size: 15px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.75;
+      margin-bottom: 40px;
+    }
+
+    .contact-detail {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .contact-detail-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .contact-detail-label {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+    }
+
+    .contact-detail-value {
+      font-size: 15px;
+      color: var(--white);
+    }
+
+    /* ── FORM ── */
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .form-group label {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+    }
+
+    .form-group input,
+    .form-group textarea {
+      font-family: var(--font-body);
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--white);
+      background: rgba(255,255,255,0.06);
+      border: none;
+      border-bottom: 1px solid rgba(255,255,255,0.2);
+      padding: 16px 20px;
+      outline: none;
+      transition: border-color 0.2s, background 0.2s;
+      width: 100%;
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: rgba(255,255,255,0.25);
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      background: rgba(255,255,255,0.1);
+      border-bottom-color: var(--accent);
+    }
+
+    .form-group input.error {
+      border-bottom-color: #e05c5c;
+    }
+
+    .form-error {
+      font-size: 12px;
+      color: #e05c5c;
+      display: none;
+    }
+
+    .form-group.has-error .form-error { display: block; }
+    .form-group.has-error input { border-bottom-color: #e05c5c; }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 140px;
+    }
+
+    .form-submit {
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--black);
+      background: var(--accent);
+      border: none;
+      padding: 18px 48px;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+      align-self: flex-start;
+    }
+
+    .form-submit:hover {
+      background: var(--white);
+      color: var(--black);
+    }
+
     /* ── FOOTER ── */
     footer {
-      background: var(--black);
+      background: #050505;
       color: var(--white);
       padding: 48px 64px;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      border-top: 1px solid rgba(255,255,255,0.06);
     }
 
     .footer-logo {
@@ -449,7 +592,7 @@
       text-transform: uppercase;
       color: var(--white);
       text-decoration: none;
-      opacity: 0.5;
+      opacity: 0.4;
       transition: opacity 0.2s;
     }
 
@@ -458,19 +601,44 @@
     .footer-copy {
       font-size: 12px;
       color: var(--white);
-      opacity: 0.3;
+      opacity: 0.25;
     }
 
+    /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
+      nav { padding: 20px 24px; }
+      .nav-links { display: none; }
+
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-left { padding: 60px 24px 48px; }
+      .hero-right { height: 320px; }
+      .hero-stat-block { bottom: 32px; left: 24px; flex-direction: row; flex-wrap: wrap; gap: 24px; }
+
+      .services { padding: 80px 24px; }
+      .services-grid { grid-template-columns: 1fr 1fr; }
+      .section-header { flex-direction: column; align-items: flex-start; gap: 24px; }
+
       .video-section { padding: 80px 24px; }
+
       .about { padding: 80px 24px; }
       .about-grid { grid-template-columns: repeat(2, 1fr); }
+
+      .team-section { padding: 0 24px 80px; }
+      .team-photo { height: 300px; }
+
+      .contact-section { padding: 80px 24px; }
+      .contact-inner { grid-template-columns: 1fr; gap: 48px; }
+
       footer { padding: 40px 24px; flex-direction: column; gap: 28px; text-align: center; }
       .footer-nav { flex-wrap: wrap; justify-content: center; gap: 20px; }
     }
 
     @media (max-width: 480px) {
+      .nav-cta { display: none; }
+      .hero-actions { flex-direction: column; align-items: flex-start; gap: 20px; }
+      .services-grid { grid-template-columns: 1fr; }
       .about-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -481,7 +649,6 @@
     <a class="nav-logo" href="#">Peak <span>Digital</span></a>
     <ul class="nav-links">
       <li><a href="#services">Услуги</a></li>
-      <li><a href="#cases">Кейсы</a></li>
       <li><a href="#about">О нас</a></li>
       <li><a href="#contact">Контакты</a></li>
     </ul>
@@ -503,11 +670,14 @@
       </p>
       <div class="hero-actions">
         <a class="btn-primary" href="#contact">Получить стратегию</a>
-        <a class="btn-ghost" href="#cases">Наши кейсы</a>
       </div>
     </div>
 
     <div class="hero-right">
+      <img
+        src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=1200&auto=format&fit=crop"
+        alt="Команда Peak Digital за работой"
+      />
       <div class="hero-stat-block">
         <div class="hero-stat">
           <div class="hero-stat-num">120<span>+</span></div>
@@ -559,8 +729,52 @@
     </div>
   </div>
 
+  <!-- SERVICES -->
+  <section class="services" id="services">
+    <div class="section-header reveal">
+      <div>
+        <p class="section-tag">Что мы делаем</p>
+        <h2 class="section-title">Наши услуги</h2>
+      </div>
+      <a class="section-link" href="#contact">Обсудить задачу</a>
+    </div>
+
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <span class="service-num">01</span>
+        <h3 class="service-name">SEO-продвижение</h3>
+        <p class="service-desc">Выводим сайт в топ поисковых систем. Работаем с технической оптимизацией, контентом и ссылочной массой.</p>
+      </div>
+      <div class="service-card reveal">
+        <span class="service-num">02</span>
+        <h3 class="service-name">Контекстная реклама</h3>
+        <p class="service-desc">Настраиваем Яндекс Директ так, чтобы каждый рубль бюджета приводил целевого клиента.</p>
+      </div>
+      <div class="service-card reveal">
+        <span class="service-num">03</span>
+        <h3 class="service-name">SMM</h3>
+        <p class="service-desc">Ведём социальные сети: контент, комьюнити, таргетированная реклама и работа с аудиторией.</p>
+      </div>
+      <div class="service-card reveal">
+        <span class="service-num">04</span>
+        <h3 class="service-name">Performance-маркетинг</h3>
+        <p class="service-desc">Комплексный подход к платному трафику. Работаем на измеримый результат: заявки, продажи, ROI.</p>
+      </div>
+      <div class="service-card reveal">
+        <span class="service-num">05</span>
+        <h3 class="service-name">Аналитика</h3>
+        <p class="service-desc">Настраиваем сквозную аналитику и строим отчёты, которые показывают реальную картину бизнеса.</p>
+      </div>
+      <div class="service-card reveal">
+        <span class="service-num">06</span>
+        <h3 class="service-name">Стратегия</h3>
+        <p class="service-desc">Разрабатываем маркетинговую стратегию под задачи бизнеса — от аудита до дорожной карты роста.</p>
+      </div>
+    </div>
+  </section>
+
   <!-- VIDEO -->
-  <section class="video-section">
+  <section class="video-section reveal">
     <div class="section-header">
       <div>
         <p class="section-tag">Как мы работаем</p>
@@ -577,92 +791,98 @@
     </div>
   </section>
 
-  <!-- SERVICES -->
-  <section class="services" id="services">
-    <div class="section-header">
-      <div>
-        <p class="section-tag">Что мы делаем</p>
-        <h2 class="section-title">Наши услуги</h2>
-      </div>
-      <a class="section-link" href="#contact">Обсудить задачу</a>
-    </div>
-
-    <div class="services-grid">
-
-      <div class="service-card">
-        <span class="service-num">01</span>
-        <h3 class="service-name">SEO-продвижение</h3>
-        <p class="service-desc">Выводим сайт в топ поисковых систем. Работаем с технической оптимизацией, контентом и ссылочной массой.</p>
-      </div>
-
-      <div class="service-card">
-        <span class="service-num">02</span>
-        <h3 class="service-name">Контекстная реклама</h3>
-        <p class="service-desc">Настраиваем Яндекс Директ так, чтобы каждый рубль бюджета приводил целевого клиента.</p>
-      </div>
-
-      <div class="service-card">
-        <span class="service-num">03</span>
-        <h3 class="service-name">SMM</h3>
-        <p class="service-desc">Ведём социальные сети: контент, комьюнити, таргетированная реклама и работа с аудиторией.</p>
-      </div>
-
-      <div class="service-card">
-        <span class="service-num">04</span>
-        <h3 class="service-name">Performance-маркетинг</h3>
-        <p class="service-desc">Комплексный подход к платному трафику. Работаем на измеримый результат: заявки, продажи, ROI.</p>
-      </div>
-
-      <div class="service-card">
-        <span class="service-num">05</span>
-        <h3 class="service-name">Аналитика</h3>
-        <p class="service-desc">Настраиваем сквозную аналитику и строим отчёты, которые показывают реальную картину бизнеса.</p>
-      </div>
-
-      <div class="service-card">
-        <span class="service-num">06</span>
-        <h3 class="service-name">Стратегия</h3>
-        <p class="service-desc">Разрабатываем маркетинговую стратегию под задачи бизнеса — от аудита до дорожной карты роста.</p>
-      </div>
-
-    </div>
-  </section>
-
-
   <!-- ABOUT -->
   <section class="about" id="about">
-    <div class="section-header">
+    <div class="section-header reveal">
       <div>
         <p class="section-tag">Почему мы</p>
         <h2 class="section-title">Почему Peak Digital</h2>
       </div>
     </div>
     <div class="about-grid">
-
-      <div class="about-card">
+      <div class="about-card reveal">
         <div class="about-num">01</div>
         <h3 class="about-title">Прозрачность</h3>
         <p class="about-desc">Еженедельные отчёты, доступ к рекламным кабинетам всегда открыт. Вы видите всё.</p>
       </div>
-
-      <div class="about-card">
+      <div class="about-card reveal">
         <div class="about-num">02</div>
         <h3 class="about-title">Результат в цифрах</h3>
         <p class="about-desc">KPI фиксируем в договоре, работаем на измеримый результат — заявки, продажи, ROI.</p>
       </div>
-
-      <div class="about-card">
+      <div class="about-card reveal">
         <div class="about-num">03</div>
         <h3 class="about-title">Команда экспертов</h3>
         <p class="about-desc">Специалисты с опытом 5+ лет в каждом направлении. Без джунов на ключевых задачах.</p>
       </div>
-
-      <div class="about-card">
+      <div class="about-card reveal">
         <div class="about-num">04</div>
         <h3 class="about-title">Без долгих согласований</h3>
         <p class="about-desc">Выделенный менеджер отвечает в течение часа. Решения принимаем быстро.</p>
       </div>
+    </div>
+  </section>
 
+  <!-- TEAM PHOTO -->
+  <div class="team-section reveal">
+    <img
+      class="team-photo"
+      src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1600&auto=format&fit=crop"
+      alt="Офис и команда Peak Digital"
+    />
+    <p class="team-caption">Наш офис в Москве — здесь рождаются стратегии для ваших проектов</p>
+  </div>
+
+  <!-- CONTACT -->
+  <section class="contact-section" id="contact">
+    <div class="section-header reveal" style="border-bottom-color: rgba(255,255,255,0.1);">
+      <div>
+        <p class="section-tag">Свяжитесь с нами</p>
+        <h2 class="section-title" style="color:var(--white);">Обсудим ваш проект</h2>
+      </div>
+    </div>
+    <div class="contact-inner">
+      <div class="reveal">
+        <h3 class="contact-info-title">Оставьте заявку — ответим в течение часа</h3>
+        <p class="contact-info-desc">Расскажите о вашем бизнесе и задаче. Мы изучим ситуацию и предложим решение, которое работает.</p>
+        <div class="contact-detail">
+          <div class="contact-detail-item">
+            <span class="contact-detail-label">Email</span>
+            <span class="contact-detail-value">hello@peakdigital.ru</span>
+          </div>
+          <div class="contact-detail-item">
+            <span class="contact-detail-label">Телефон</span>
+            <span class="contact-detail-value">+7 495 000 00 00</span>
+          </div>
+          <div class="contact-detail-item">
+            <span class="contact-detail-label">Адрес</span>
+            <span class="contact-detail-value">Москва, ул. Тверская, 1</span>
+          </div>
+        </div>
+      </div>
+
+      <form class="contact-form reveal" id="contactForm" action="#" method="post" novalidate>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="name">Имя</label>
+            <input type="text" id="name" name="name" placeholder="Иван Иванов" required />
+          </div>
+          <div class="form-group" id="phoneGroup">
+            <label for="phone">Телефон</label>
+            <input type="tel" id="phone" name="phone" placeholder="+7 999 000 00 00" />
+            <span class="form-error">Введите номер в формате +7XXXXXXXXXX</span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="ivan@company.ru" required />
+        </div>
+        <div class="form-group">
+          <label for="message">Опишите задачу</label>
+          <textarea id="message" name="message" placeholder="Расскажите о вашем бизнесе..."></textarea>
+        </div>
+        <button type="submit" class="form-submit">Отправить заявку</button>
+      </form>
     </div>
   </section>
 
@@ -672,10 +892,40 @@
     <ul class="footer-nav">
       <li><a href="#services">Услуги</a></li>
       <li><a href="#about">О нас</a></li>
-      <li><a href="contact.html">Контакты</a></li>
+      <li><a href="#contact">Контакты</a></li>
     </ul>
     <p class="footer-copy">© 2024 Peak Digital. Все права защищены.</p>
   </footer>
+
+  <script>
+    // Scroll reveal
+    var reveals = document.querySelectorAll('.reveal');
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.12 });
+    reveals.forEach(function(el) { observer.observe(el); });
+
+    // Phone validation
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      var phone = document.getElementById('phone').value.trim();
+      var group = document.getElementById('phoneGroup');
+      var phoneRegex = /^(\+7|8)[\s\-]?\(?\d{3}\)?[\s\-]?\d{3}[\s\-]?\d{2}[\s\-]?\d{2}$/;
+      if (phone && !phoneRegex.test(phone)) {
+        e.preventDefault();
+        group.classList.add('has-error');
+      } else {
+        group.classList.remove('has-error');
+      }
+    });
+
+    document.getElementById('phone').addEventListener('input', function() {
+      document.getElementById('phoneGroup').classList.remove('has-error');
+    });
+  </script>
 
 </body>
 </html>

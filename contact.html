@@ -86,6 +86,11 @@
 
     .nav-cta:hover { background: var(--accent); }
 
+    /* ── PHONE VALIDATION ── */
+    .form-group.has-error input { border-bottom-color: #e05c5c; }
+    .form-error { font-size: 12px; color: #e05c5c; display: none; margin-top: 4px; }
+    .form-group.has-error .form-error { display: block; }
+
     /* ── CONTACT PAGE ── */
     .contact-page {
       min-height: 100vh;
@@ -262,7 +267,7 @@
       <li><a href="index.html#about">О нас</a></li>
       <li><a href="contact.html">Контакты</a></li>
     </ul>
-    <a class="nav-cta" href="contact.html">Обсудить проект</a>
+    <a class="nav-cta" href="index.html#contact">Обсудить проект</a>
   </nav>
 
   <!-- CONTACT FORM -->
@@ -272,16 +277,17 @@
       <h1 class="contact-title">Обсудим<br>ваш проект</h1>
       <p class="contact-subtitle">Оставьте заявку — ответим в течение часа и предложим решение под вашу задачу.</p>
 
-      <form class="contact-form" action="#" method="post">
+      <form class="contact-form" id="contactForm" action="#" method="post" novalidate>
 
         <div class="form-row">
           <div class="form-group">
             <label for="name">Имя</label>
             <input type="text" id="name" name="name" placeholder="Иван Иванов" required />
           </div>
-          <div class="form-group">
+          <div class="form-group" id="phoneGroup">
             <label for="phone">Телефон</label>
             <input type="tel" id="phone" name="phone" placeholder="+7 999 000 00 00" />
+            <span class="form-error">Введите номер в формате +7XXXXXXXXXX</span>
           </div>
         </div>
 
@@ -311,6 +317,23 @@
     </ul>
     <p class="footer-copy">© 2024 Peak Digital. Все права защищены.</p>
   </footer>
+
+  <script>
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      var phone = document.getElementById('phone').value.trim();
+      var group = document.getElementById('phoneGroup');
+      var phoneRegex = /^(\+7|8)[\s\-]?\(?\d{3}\)?[\s\-]?\d{3}[\s\-]?\d{2}[\s\-]?\d{2}$/;
+      if (phone && !phoneRegex.test(phone)) {
+        e.preventDefault();
+        group.classList.add('has-error');
+      } else {
+        group.classList.remove('has-error');
+      }
+    });
+    document.getElementById('phone').addEventListener('input', function() {
+      document.getElementById('phoneGroup').classList.remove('has-error');
+    });
+  </script>
 
 </body>
 </html>
