@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Контакты — Peak Digital</title>
+  <title>Заявка принята — Peak Digital</title>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -27,6 +27,9 @@
       font-size: 16px;
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
 
     /* ── NAV ── */
@@ -86,122 +89,143 @@
 
     .nav-cta:hover { background: var(--accent); }
 
-    /* ── PHONE VALIDATION ── */
-    .form-group.has-error input { border-bottom-color: #e05c5c; }
-    .form-error { font-size: 12px; color: #e05c5c; display: none; margin-top: 4px; }
-    .form-group.has-error .form-error { display: block; }
-
-    /* ── CONTACT PAGE ── */
-    .contact-page {
-      min-height: 100vh;
-      padding: 160px 64px 120px;
+    /* ── MAIN ── */
+    main {
+      flex: 1;
       display: flex;
-      align-items: flex-start;
+      align-items: center;
       justify-content: center;
+      padding: 140px 64px 80px;
     }
 
-    .contact-inner {
+    .thanks-block {
+      max-width: 760px;
       width: 100%;
-      max-width: 720px;
     }
 
-    .contact-tag {
+    .thanks-icon {
+      width: 64px;
+      height: 64px;
+      border: 1.5px solid var(--accent);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 40px;
+    }
+
+    .thanks-icon svg {
+      width: 28px;
+      height: 28px;
+      stroke: var(--accent);
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .thanks-tag {
       font-size: 12px;
       letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--accent);
-      margin-bottom: 24px;
+      margin-bottom: 20px;
     }
 
-    .contact-title {
+    .thanks-title {
       font-family: var(--font-display);
       font-size: clamp(40px, 5vw, 72px);
       font-weight: 300;
       line-height: 1.1;
-      margin-bottom: 16px;
+      margin-bottom: 20px;
     }
 
-    .contact-subtitle {
-      font-size: 15px;
+    .thanks-desc {
+      font-size: 16px;
       font-weight: 300;
       color: var(--mid);
+      line-height: 1.75;
+      max-width: 520px;
       margin-bottom: 64px;
     }
 
-    /* ── FORM ── */
-    .contact-form {
-      display: flex;
-      flex-direction: column;
-      gap: 24px;
-    }
-
-    .form-row {
+    /* ── STEPS ── */
+    .steps {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      margin-bottom: 56px;
     }
 
-    .form-group {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .form-group label {
-      font-size: 11px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--mid);
-    }
-
-    .form-group input,
-    .form-group textarea {
-      font-family: var(--font-body);
-      font-size: 15px;
-      font-weight: 300;
-      color: var(--black);
+    .step {
       background: var(--gray);
-      border: none;
-      border-bottom: 1px solid rgba(0,0,0,0.15);
-      padding: 16px 20px;
-      outline: none;
-      transition: border-color 0.2s, background 0.2s;
-      width: 100%;
+      padding: 36px 32px;
     }
 
-    .form-group input:focus,
-    .form-group textarea:focus {
-      background: var(--white);
-      border-bottom-color: var(--accent);
+    .step-num {
+      font-family: var(--font-display);
+      font-size: 36px;
+      font-weight: 300;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 16px;
     }
 
-    .form-group textarea {
-      resize: vertical;
-      min-height: 140px;
+    .step-title {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 400;
+      margin-bottom: 8px;
     }
 
-    .form-submit {
-      font-family: var(--font-body);
+    .step-desc {
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--mid);
+      line-height: 1.65;
+    }
+
+    /* ── ACTIONS ── */
+    .thanks-actions {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .btn-primary {
       font-size: 13px;
       font-weight: 500;
       letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--white);
       background: var(--black);
-      border: none;
-      padding: 18px 48px;
-      cursor: pointer;
+      padding: 16px 36px;
+      text-decoration: none;
+      display: inline-block;
       transition: background 0.2s;
-      align-self: flex-start;
     }
 
-    .form-submit:hover { background: var(--accent); }
+    .btn-primary:hover { background: var(--accent); }
+
+    .btn-ghost {
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--black);
+      text-decoration: none;
+      opacity: 0.5;
+      border-bottom: 1px solid currentColor;
+      padding-bottom: 2px;
+      transition: opacity 0.2s;
+    }
+
+    .btn-ghost:hover { opacity: 1; }
 
     /* ── FOOTER ── */
     footer {
       background: var(--black);
       color: var(--white);
-      padding: 48px 64px;
+      padding: 40px 64px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -230,7 +254,7 @@
       text-transform: uppercase;
       color: var(--white);
       text-decoration: none;
-      opacity: 0.5;
+      opacity: 0.4;
       transition: opacity 0.2s;
     }
 
@@ -239,21 +263,22 @@
     .footer-copy {
       font-size: 12px;
       color: var(--white);
-      opacity: 0.3;
+      opacity: 0.25;
     }
 
     /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
       nav { padding: 20px 24px; }
       .nav-links { display: none; }
-      .contact-page { padding: 120px 24px 80px; }
+      main { padding: 120px 24px 64px; }
+      .steps { grid-template-columns: 1fr; }
       footer { padding: 40px 24px; flex-direction: column; gap: 28px; text-align: center; }
       .footer-nav { flex-wrap: wrap; justify-content: center; gap: 20px; }
     }
 
     @media (max-width: 480px) {
       .nav-cta { display: none; }
-      .form-row { grid-template-columns: 1fr; }
+      .thanks-actions { flex-direction: column; align-items: flex-start; gap: 20px; }
     }
   </style>
 </head>
@@ -265,45 +290,51 @@
     <ul class="nav-links">
       <li><a href="index.html#services">Услуги</a></li>
       <li><a href="index.html#about">О нас</a></li>
-      <li><a href="contact.html">Контакты</a></li>
+      <li><a href="index.html#contact">Контакты</a></li>
     </ul>
-    <a class="nav-cta" href="index.html#contact">Обсудить проект</a>
+    <a class="nav-cta" href="index.html#contact">Оставить заявку</a>
   </nav>
 
-  <!-- CONTACT FORM -->
-  <main class="contact-page">
-    <div class="contact-inner">
-      <p class="contact-tag">Свяжитесь с нами</p>
-      <h1 class="contact-title">Обсудим<br>ваш проект</h1>
-      <p class="contact-subtitle">Оставьте заявку — ответим в течение часа и предложим решение под вашу задачу.</p>
+  <!-- MAIN -->
+  <main>
+    <div class="thanks-block">
 
-      <form class="contact-form" id="contactForm" action="#" method="post" novalidate>
+      <div class="thanks-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+      </div>
 
-        <div class="form-row">
-          <div class="form-group">
-            <label for="name">Имя</label>
-            <input type="text" id="name" name="name" placeholder="Иван Иванов" required />
-          </div>
-          <div class="form-group" id="phoneGroup">
-            <label for="phone">Телефон</label>
-            <input type="tel" id="phone" name="phone" placeholder="+7 999 000 00 00" />
-            <span class="form-error">Введите номер в формате +7XXXXXXXXXX</span>
-          </div>
+      <p class="thanks-tag">Заявка принята</p>
+      <h1 class="thanks-title">Спасибо<br>за обращение!</h1>
+      <p class="thanks-desc">
+        Мы получили вашу заявку и уже передали её менеджеру. Свяжемся с вами в течение часа в рабочее время.
+      </p>
+
+      <!-- STEPS -->
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">01</div>
+          <h3 class="step-title">Получили заявку</h3>
+          <p class="step-desc">Ваш запрос уже у нас. Менеджер ознакомится с задачей в ближайшее время.</p>
         </div>
-
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input type="email" id="email" name="email" placeholder="ivan@company.ru" required />
+        <div class="step">
+          <div class="step-num">02</div>
+          <h3 class="step-title">Изучим задачу</h3>
+          <p class="step-desc">Проанализируем ваш бизнес и подберём подходящие инструменты под цели.</p>
         </div>
-
-        <div class="form-group">
-          <label for="message">Опишите задачу</label>
-          <textarea id="message" name="message" placeholder="Расскажите о вашем бизнесе и задаче, которую нужно решить..."></textarea>
+        <div class="step">
+          <div class="step-num">03</div>
+          <h3 class="step-title">Позвоним вам</h3>
+          <p class="step-desc">Свяжемся в течение часа, чтобы обсудить детали и предложить решение.</p>
         </div>
+      </div>
 
-        <button type="submit" class="form-submit">Отправить заявку</button>
+      <div class="thanks-actions">
+        <a class="btn-primary" href="index.html">Вернуться на главную</a>
+        <a class="btn-ghost" href="index.html#services">Посмотреть услуги</a>
+      </div>
 
-      </form>
     </div>
   </main>
 
@@ -313,27 +344,10 @@
     <ul class="footer-nav">
       <li><a href="index.html#services">Услуги</a></li>
       <li><a href="index.html#about">О нас</a></li>
-      <li><a href="contact.html">Контакты</a></li>
+      <li><a href="index.html#contact">Контакты</a></li>
     </ul>
     <p class="footer-copy">© 2024 Peak Digital. Все права защищены.</p>
   </footer>
-
-  <script>
-    document.getElementById('contactForm').addEventListener('submit', function(e) {
-      var phone = document.getElementById('phone').value.trim();
-      var group = document.getElementById('phoneGroup');
-      var phoneRegex = /^(\+7|8)[\s\-]?\(?\d{3}\)?[\s\-]?\d{3}[\s\-]?\d{2}[\s\-]?\d{2}$/;
-      if (phone && !phoneRegex.test(phone)) {
-        e.preventDefault();
-        group.classList.add('has-error');
-      } else {
-        group.classList.remove('has-error');
-      }
-    });
-    document.getElementById('phone').addEventListener('input', function() {
-      document.getElementById('phoneGroup').classList.remove('has-error');
-    });
-  </script>
 
 </body>
 </html>

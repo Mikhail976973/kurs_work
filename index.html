@@ -89,14 +89,8 @@
 
     /* ── SCROLL ANIMATION ── */
     .reveal {
-      opacity: 0;
-      transform: translateY(40px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-
-    .reveal.visible {
       opacity: 1;
-      transform: translateY(0);
+      transform: none;
     }
 
     /* ── HERO ── */
@@ -412,13 +406,13 @@
     /* ── CONTACT ── */
     .contact-section {
       padding: 120px 64px;
-      background: var(--black);
-      color: var(--white);
+      background: var(--gray);
+      color: var(--black);
     }
 
     .contact-section .section-tag { color: var(--accent); }
 
-    .contact-section .section-title { color: var(--white); }
+    .contact-section .section-title { color: var(--black); }
 
     .contact-inner {
       display: grid;
@@ -439,7 +433,7 @@
     .contact-info-desc {
       font-size: 15px;
       font-weight: 300;
-      color: rgba(255,255,255,0.5);
+      color: var(--mid);
       line-height: 1.75;
       margin-bottom: 40px;
     }
@@ -460,12 +454,12 @@
       font-size: 11px;
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.3);
+      color: var(--mid);
     }
 
     .contact-detail-value {
       font-size: 15px;
-      color: var(--white);
+      color: var(--black);
     }
 
     /* ── FORM ── */
@@ -491,7 +485,7 @@
       font-size: 11px;
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.4);
+      color: var(--mid);
     }
 
     .form-group input,
@@ -499,10 +493,10 @@
       font-family: var(--font-body);
       font-size: 15px;
       font-weight: 300;
-      color: var(--white);
-      background: rgba(255,255,255,0.06);
+      color: var(--black);
+      background: var(--white);
       border: none;
-      border-bottom: 1px solid rgba(255,255,255,0.2);
+      border-bottom: 1px solid rgba(0,0,0,0.15);
       padding: 16px 20px;
       outline: none;
       transition: border-color 0.2s, background 0.2s;
@@ -511,12 +505,12 @@
 
     .form-group input::placeholder,
     .form-group textarea::placeholder {
-      color: rgba(255,255,255,0.25);
+      color: rgba(0,0,0,0.25);
     }
 
     .form-group input:focus,
     .form-group textarea:focus {
-      background: rgba(255,255,255,0.1);
+      background: var(--white);
       border-bottom-color: var(--accent);
     }
 
@@ -544,8 +538,8 @@
       font-weight: 500;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: var(--black);
-      background: var(--accent);
+      color: var(--white);
+      background: var(--black);
       border: none;
       padding: 18px 48px;
       cursor: pointer;
@@ -554,8 +548,8 @@
     }
 
     .form-submit:hover {
-      background: var(--white);
-      color: var(--black);
+      background: var(--accent);
+      color: var(--white);
     }
 
     /* ── FOOTER ── */
@@ -675,7 +669,7 @@
 
     <div class="hero-right">
       <img
-        src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=1200&auto=format&fit=crop"
+        src="images/hero.jpg"
         alt="Команда Peak Digital за работой"
       />
       <div class="hero-stat-block">
@@ -827,7 +821,7 @@
   <div class="team-section reveal">
     <img
       class="team-photo"
-      src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1600&auto=format&fit=crop"
+      src="images/office.jpg"
       alt="Офис и команда Peak Digital"
     />
     <p class="team-caption">Наш офис в Москве — здесь рождаются стратегии для ваших проектов</p>
@@ -835,10 +829,10 @@
 
   <!-- CONTACT -->
   <section class="contact-section" id="contact">
-    <div class="section-header reveal" style="border-bottom-color: rgba(255,255,255,0.1);">
+    <div class="section-header reveal">
       <div>
         <p class="section-tag">Свяжитесь с нами</p>
-        <h2 class="section-title" style="color:var(--white);">Обсудим ваш проект</h2>
+        <h2 class="section-title">Обсудим ваш проект</h2>
       </div>
     </div>
     <div class="contact-inner">
@@ -861,7 +855,7 @@
         </div>
       </div>
 
-      <form class="contact-form reveal" id="contactForm" action="#" method="post" novalidate>
+      <form class="contact-form reveal" id="contactForm" action="contact.html" method="get">
         <div class="form-row">
           <div class="form-group">
             <label for="name">Имя</label>
@@ -897,35 +891,6 @@
     <p class="footer-copy">© 2024 Peak Digital. Все права защищены.</p>
   </footer>
 
-  <script>
-    // Scroll reveal
-    var reveals = document.querySelectorAll('.reveal');
-    var observer = new IntersectionObserver(function(entries) {
-      entries.forEach(function(entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, { threshold: 0.12 });
-    reveals.forEach(function(el) { observer.observe(el); });
-
-    // Phone validation
-    document.getElementById('contactForm').addEventListener('submit', function(e) {
-      var phone = document.getElementById('phone').value.trim();
-      var group = document.getElementById('phoneGroup');
-      var phoneRegex = /^(\+7|8)[\s\-]?\(?\d{3}\)?[\s\-]?\d{3}[\s\-]?\d{2}[\s\-]?\d{2}$/;
-      if (phone && !phoneRegex.test(phone)) {
-        e.preventDefault();
-        group.classList.add('has-error');
-      } else {
-        group.classList.remove('has-error');
-      }
-    });
-
-    document.getElementById('phone').addEventListener('input', function() {
-      document.getElementById('phoneGroup').classList.remove('has-error');
-    });
-  </script>
 
 </body>
 </html>
