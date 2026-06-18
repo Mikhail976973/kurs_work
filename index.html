@@ -237,7 +237,7 @@
           </div>
           <div class="form-group" id="phoneGroup">
             <label for="phone">Телефон</label>
-            <input type="tel" id="phone" name="phone" placeholder="+7 999 000 00 00" />
+            <input type="tel" id="phone" name="phone" pattern="[0-9+\-()\s]*" placeholder="+7 999 000 00 00" required/>
             <span class="form-error">Введите номер в формате +7XXXXXXXXXX</span>
           </div>
         </div>
